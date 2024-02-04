@@ -14,23 +14,22 @@ class Solution(object):
             dict1[w] = dict1.get(w, 0) + 1
         for i in range(m):
             start = i
-            while start + m * n <= l:
-                dict2 = {}
-                j=start
-                while j <start+m*n:
-                    temp=s[j:j + m]
-                    if dict1.get(temp, 0) > dict2.get(temp, 0):
-                        dict2[temp] = dict2.get(temp, 0) + 1
-                        j+=m
-                    else:
-                        break
-                if j < start + m * n:
-                    if dict1.get(temp):
-                        start += m
-                    else:
-                        start = j + m
+            dict2={}
+            count=0
+            for j in range(i, l-m+1, m):
+                temp=s[j:j+m]
+                if temp in dict1:
+                    dict2[temp]=dict2.get(temp,0)+1
+                    count+=1
+                    while dict2[temp]>dict1[temp]:
+                        dict2[s[start:start+m]]-=1
+                        start+=m
+                        count-=1
+                    if count==n:
+                        result.append(start)
                 else:
-                    result.append(start)
-                    start += m
+                    start=j+m
+                    dict2={}
+                    count=0 
         return result
 
