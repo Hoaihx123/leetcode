@@ -18,14 +18,15 @@ class Solution(object):
                 dict2 = {}
                 j=start
                 while j <start+m*n:
-                    if dict1.get(s[j:j + m], 0) > dict2.get(s[j:j + m], 0):
-                        dict2[s[j:j + m]] = dict2.get(s[j:j + m], 0) + 1
+                    temp=s[j:j + m]
+                    if dict1.get(temp, 0) > dict2.get(temp, 0):
+                        dict2[temp] = dict2.get(temp, 0) + 1
                         j+=m
                     else:
                         break
                 print(j)
                 if j < start + m * n:
-                    if dict1.get(s[j:j + m]):
+                    if dict1.get(temp):
                         start += m
                     else:
                         start = j + m
