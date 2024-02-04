@@ -24,7 +24,6 @@ class Solution(object):
                         j+=m
                     else:
                         break
-                print(j)
                 if j < start + m * n:
                     if dict1.get(temp):
                         start += m
